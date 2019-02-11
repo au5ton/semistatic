@@ -24,6 +24,17 @@ else
 	 echo "A Record name supplied is: "$2
 fi
 
+A_RECORD=$(dig +short $2.$1)
+echo $A_RECORD
+
+if [ "$HOME_IP" = "$A_RECORD" ];
+then
+	echo "Home IP and A Record match, DNS will not be updated"
+	exit
+else
+	echo "Home IP is different from A Record! Updating DNS."
+fi
+
 echo "which gandi: "
 if which gandi;
 then
