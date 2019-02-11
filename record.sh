@@ -4,8 +4,6 @@ HOME_IP=$(curl --silent ifconfig.io)
 
 echo "Detected home IP as: "$HOME_IP
 
-# gandi dns update --ttl 1800 soot.pw navagnet A $HOME_IP 
-
 if [ -z "$1" ]
 then
 	# if empty
