@@ -1,6 +1,6 @@
 #!/bin/sh
 
-HOME_IP=$(curl --silent ifconfig.io)
+HOME_IP=$(curl --silent -4 ifconfig.io)
 
 echo "Detected home IP as: "$HOME_IP
 
