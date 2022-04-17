@@ -1,0 +1,21 @@
+on: workflow_dispatch
+
+name: Publish
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Login to GitHub
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u au5ton --password-stdin
+      env:
+        CR_PAT: ${{ secrets.CR_PAT }}
+    - name: Build the image
+      run: |
+        docker buildx build --push \
+          --tag ghcr.io/au5ton/semistatic:latest \
+          --platform linux/amd64,linux/arm/v7,linux/arm/v6,linux/arm64 .
